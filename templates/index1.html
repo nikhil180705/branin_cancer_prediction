@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="english">
+  <head>
+    <title>Brain Tumor Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style>
+      /* Reset styles */
+      html { line-height: 1.15; scroll-behavior: smooth; }
+      body { margin: 0; font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; }
+      * { box-sizing: border-box; border-width: 0; border-style: solid; }
+      p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption { margin: 0; padding: 0; }
+      button { background-color: transparent; }
+      button,input,optgroup,select,textarea { font-family: inherit; font-size: 100%; line-height: 1.15; margin: 0; }
+      button,select { text-transform: none; }
+      button,[type="button"],[type="reset"],[type="submit"] { -webkit-appearance: button; }
+      button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner { border-style: none; padding: 0; }
+      button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus { outline: 1px dotted ButtonText; }
+      a { color: inherit; text-decoration: inherit; }
+      input { padding: 2px 4px; }
+      img { display: block; }
+
+      /* Default styles */
+      body {
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-theme-neutral-dark);
+        background: var(--dl-color-theme-neutral-light);
+        fill: var(--dl-color-theme-neutral-dark);
+      }
+
+      /* Custom styles */
+      .frame4-container {
+        width: 100%;
+        display: flex;
+        overflow: auto;
+        min-height: 100vh;
+        align-items: center;
+        flex-direction: column;
+      }
+      .frame4-frame4 {
+        width: 100%;
+        height: 1024px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        align-items: flex-start;
+        flex-shrink: 0;
+        background-color: rgba(255, 255, 255, 1);
+      }
+      /* ... (rest of your custom styles) ... */
+    </style>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <div>
+      <h1>Brain Tumor Detection</h1>
+      <p>Welcome to the Brain Tumor Detection application.</p>
+      
+      <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Detect Tumor</button>
+      </form>
+
+      <div id="result">
+        <p id="prediction"></p>
+        <p id="confidence"></p>
+      </div>
+
+      <!-- You can add more content here as needed -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#upload-form').on('submit', function(event) {
+          event.preventDefault();
+          var formData = new FormData(this);
+
+          $.ajax({
+            type: 'POST',
+            url: '/predict',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+              $('#prediction').text('Tumor Type: ' + response.prediction);
+              $('#confidence').text('Confidence: ' + response.confidence.toFixed(2) + '%');
+            },
+            error: function() {
+              alert('Error predicting tumor type.');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
