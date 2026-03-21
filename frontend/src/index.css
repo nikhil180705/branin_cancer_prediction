@@ -1,0 +1,255 @@
+/* ── Brain Tumor AI Analyzer — Global Styles ──────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f0f4f8;
+  --bg-white: #ffffff;
+  --bg-sidebar: #0f172a;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --text: #1e293b;
+  --text-sec: #64748b;
+  --text-muted: #94a3b8;
+  --blue: #3b82f6;
+  --blue-light: #eff6ff;
+  --blue-dark: #2563eb;
+  --teal: #14b8a6;
+  --teal-light: #f0fdfa;
+  --green: #22c55e;
+  --green-light: #f0fdf4;
+  --amber: #f59e0b;
+  --amber-light: #fffbeb;
+  --red: #ef4444;
+  --red-light: #fef2f2;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --sidebar-w: 250px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ─────────────────────────────────────────── */
+.sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-w); height: 100vh;
+  background: var(--bg-sidebar);
+  color: #f8fafc;
+  display: flex; flex-direction: column;
+  z-index: 100;
+  transition: transform var(--transition);
+}
+
+.sidebar-head {
+  padding: 1.2rem 1.2rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  display: flex; align-items: center; gap: .7rem;
+}
+
+.sidebar-head .brand-icon {
+  width: 34px; height: 34px; flex-shrink: 0;
+}
+
+.sidebar-head h1 { font-size: 1rem; font-weight: 700; line-height: 1.15; }
+.sidebar-head span { font-size: .72rem; color: #94a3b8; font-weight: 500; }
+
+.sidebar-nav {
+  flex: 1; padding: .7rem .7rem;
+  display: flex; flex-direction: column; gap: .2rem;
+}
+
+.sidebar-nav button {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .6rem .8rem;
+  background: transparent; border: none;
+  color: #94a3b8; font-family: inherit;
+  font-size: .85rem; font-weight: 500;
+  cursor: pointer; border-radius: var(--radius-xs);
+  transition: var(--transition); text-align: left; width: 100%;
+}
+
+.sidebar-nav button:hover { background: #1e293b; color: #f8fafc; }
+.sidebar-nav button.active { background: var(--blue); color: #fff; }
+
+.sidebar-foot {
+  padding: .85rem 1.2rem;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: .68rem; color: #475569; line-height: 1.5;
+}
+
+/* ── Mobile ──────────────────────────────────────────── */
+.mobile-bar {
+  display: none; position: fixed; top: 0; left: 0; right: 0;
+  height: 54px; background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  align-items: center; padding: 0 1rem; gap: .7rem; z-index: 90;
+}
+
+.mobile-bar button { background: none; border: none; color: var(--text); cursor: pointer; }
+.mobile-bar span { font-size: .95rem; font-weight: 600; }
+
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.4); z-index: 99;
+}
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.open { display: block; }
+  .mobile-bar { display: flex; }
+  .main-content { margin-left: 0 !important; padding-top: 70px !important; }
+}
+
+/* ── Main ────────────────────────────────────────────── */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1; padding: 2rem;
+  max-width: 1100px;
+}
+
+.page-head h2 { font-size: 1.4rem; font-weight: 700; }
+.page-head p { font-size: .88rem; color: var(--text-sec); margin-top: .15rem; }
+.page-head { margin-bottom: 1.4rem; }
+
+/* ── Cards ───────────────────────────────────────────── */
+.card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.2rem;
+  transition: var(--transition);
+}
+
+.card:hover { box-shadow: var(--shadow-md); }
+
+.card-title {
+  display: flex; align-items: center; gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+.card-title h3 { font-size: .92rem; font-weight: 600; flex: 1; }
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .6rem 1.2rem; border: none;
+  border-radius: var(--radius-xs);
+  font-family: inherit; font-size: .84rem;
+  font-weight: 600; cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 2px 10px rgba(59,130,246,.3);
+}
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+.btn-outline {
+  background: var(--bg-white); color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+.btn-sm { padding: .35rem .7rem; font-size: .78rem; }
+.btn-ghost { background: none; border: none; color: var(--blue); padding: .35rem .5rem; }
+
+/* ── Upload Area ─────────────────────────────────────── */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 3rem 2rem; text-align: center;
+  cursor: pointer; transition: var(--transition);
+  background: var(--bg-white);
+}
+
+.upload-zone:hover, .upload-zone.over {
+  border-color: var(--blue); background: var(--blue-light);
+}
+
+.upload-icon-wrap {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--blue-light); color: var(--blue);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: .8rem;
+}
+
+/* ── Spinner ─────────────────────────────────────────── */
+.spinner-wrap {
+  text-align: center; padding: 3.5rem 2rem;
+}
+
+.spinner-ring {
+  width: 64px; height: 64px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.2rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.spinner-wrap h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: .3rem; }
+.spinner-wrap p { color: var(--text-sec); font-size: .84rem; }
+
+/* ── Badge ───────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: .2rem .65rem; border-radius: 14px;
+  font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .03em;
+}
+
+.badge-green { background: var(--green-light); color: var(--green); }
+.badge-amber { background: var(--amber-light); color: var(--amber); }
+.badge-red { background: var(--red-light); color: var(--red); }
+
+/* ── Animations ──────────────────────────────────────── */
+.fade-in {
+  animation: fadeIn .35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slideUp .4s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Grid helpers ────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: .85rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: .85rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: .75rem; }
+.grid-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: .75rem; }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4, .grid-5 { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 580px) {
+  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,97 @@
+/* Results page styles */
+.summary-row { margin-bottom: 1.2rem; }
+
+.summary-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .9rem; text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.summary-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.summary-card.border-red { border-color: var(--red); border-width: 2px; }
+.summary-card.border-green { border-color: var(--green); border-width: 2px; }
+
+.s-label {
+  display: block; font-size: .7rem; font-weight: 600;
+  color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: .05em; margin-bottom: .4rem;
+}
+
+.s-value {
+  display: block; font-size: 1.05rem; font-weight: 700;
+}
+
+/* Confidence Ring */
+.conf-ring-wrap {
+  position: relative; width: 68px; height: 68px; margin: 0 auto;
+}
+.conf-val {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .82rem; font-weight: 700; color: var(--blue);
+}
+
+/* MRI Grid */
+.mri-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.mri-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.mri-card h4 {
+  padding: .55rem .8rem; font-size: .78rem;
+  font-weight: 600; color: var(--text-sec);
+  background: var(--bg); border-bottom: 1px solid var(--border);
+}
+.mri-frame {
+  padding: .45rem; display: flex; align-items: center;
+  justify-content: center; min-height: 170px; background: #f8fafc;
+}
+.mri-frame img {
+  max-width: 100%; max-height: 240px;
+  border-radius: var(--radius-xs); object-fit: contain;
+}
+
+/* Probability Bars */
+.prob-row {
+  display: flex; align-items: center; gap: .7rem;
+  margin-bottom: .55rem;
+}
+.prob-name {
+  font-size: .78rem; color: var(--text-sec);
+  width: 90px; flex-shrink: 0; font-weight: 500;
+}
+.prob-track {
+  flex: 1; height: 10px;
+  background: var(--bg); border-radius: 5px;
+  overflow: hidden;
+}
+.prob-fill {
+  height: 100%; border-radius: 5px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+.prob-val {
+  font-size: .78rem; font-weight: 700; color: var(--text);
+  width: 48px; text-align: right;
+}
+
+/* Report */
+.report-card { position: relative; }
+.report-box {
+  background: var(--bg); border-radius: var(--radius-sm);
+  padding: 1.1rem; max-height: 460px; overflow-y: auto;
+  border: 1px solid var(--border-light);
+}
+.report-text {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem; line-height: 1.7;
+  color: var(--text); white-space: pre-wrap; word-wrap: break-word;
+}
+.report-meta {
+  margin-top: .4rem; font-size: .72rem;
+  color: var(--text-muted);
+}
